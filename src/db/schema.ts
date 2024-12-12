@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import {
   AnySQLiteColumn,
   integer,
@@ -26,6 +26,11 @@ export const usersTable = sqliteTable("users", {
   updated,
 });
 
+export const userRelations = relations(usersTable, ({ many }) => ({
+  tweets: many(tweetsTable),
+  likes: many(likesTable),
+}));
+
 export const tweetsTable = sqliteTable("tweets", {
   id: integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
   user: integer()
@@ -41,6 +46,18 @@ export const tweetsTable = sqliteTable("tweets", {
   created,
   updated,
 });
+
+export const tweetsRelations = relations(tweetsTable, ({ one, many }) => ({
+  user: one(usersTable, {
+    fields: [tweetsTable.user],
+    references: [usersTable.id],
+  }),
+  parent: one(tweetsTable, {
+    fields: [tweetsTable.parent],
+    references: [tweetsTable.id],
+  }),
+  likes: many(likesTable),
+}));
 
 export const likesTable = sqliteTable(
   "likes",
@@ -61,3 +78,14 @@ export const likesTable = sqliteTable(
   },
   (table) => [primaryKey({ columns: [table.user, table.tweet] })]
 );
+
+export const likesRelations = relations(likesTable, ({ one }) => ({
+  user: one(usersTable, {
+    fields: [likesTable.user],
+    references: [usersTable.id],
+  }),
+  tweet: one(tweetsTable, {
+    fields: [likesTable.tweet],
+    references: [tweetsTable.id],
+  }),
+}));
