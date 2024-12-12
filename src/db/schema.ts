@@ -59,9 +59,5 @@ export const likesTable = sqliteTable(
       }),
     created,
   },
-  (table) => {
-    return {
-      pk: primaryKey({ columns: [table.user, table.tweet] }),
-    };
-  }
+  (table) => [primaryKey({ columns: [table.user, table.tweet] })]
 );
