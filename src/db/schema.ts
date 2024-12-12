@@ -1,5 +1,6 @@
 import { sql } from "drizzle-orm";
 import {
+  AnySQLiteColumn,
   integer,
   primaryKey,
   sqliteTable,
@@ -34,6 +35,9 @@ export const tweetsTable = sqliteTable("tweets", {
       onUpdate: "cascade",
     }),
   body: text().notNull(),
+  parent: integer({ mode: "number" }).references(
+    (): AnySQLiteColumn => tweetsTable.id
+  ),
   created,
   updated,
 });
