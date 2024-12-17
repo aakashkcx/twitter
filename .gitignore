@@ -13,6 +13,10 @@
 # testing
 /coverage
 
+# database
+*.db
+*.sqlite
+
 # next.js
 /.next/
 /out/
@@ -30,12 +34,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# dotenv environment variable files
+# env files
 .env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
+.env*.local
 
 # vercel
 .vercel
@@ -43,6 +44,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# database
-*.db
