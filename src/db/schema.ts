@@ -7,8 +7,6 @@ import {
   text,
 } from "drizzle-orm/sqlite-core";
 
-// https://orm.drizzle.team/docs/column-types/sqlite
-
 const created = integer({ mode: "timestamp_ms" })
   .notNull()
   .default(sql`(CURRENT_TIMESTAMP)`);
@@ -26,11 +24,6 @@ export const usersTable = sqliteTable("users", {
   updated,
 });
 
-export const userRelations = relations(usersTable, ({ many }) => ({
-  tweets: many(tweetsTable),
-  likes: many(likesTable),
-}));
-
 export const tweetsTable = sqliteTable("tweets", {
   id: integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
   user: integer()
@@ -46,18 +39,6 @@ export const tweetsTable = sqliteTable("tweets", {
   created,
   updated,
 });
-
-export const tweetsRelations = relations(tweetsTable, ({ one, many }) => ({
-  user: one(usersTable, {
-    fields: [tweetsTable.user],
-    references: [usersTable.id],
-  }),
-  parent: one(tweetsTable, {
-    fields: [tweetsTable.parent],
-    references: [tweetsTable.id],
-  }),
-  likes: many(likesTable),
-}));
 
 export const likesTable = sqliteTable(
   "likes",
@@ -78,6 +59,23 @@ export const likesTable = sqliteTable(
   },
   (table) => [primaryKey({ columns: [table.user, table.tweet] })]
 );
+
+export const userRelations = relations(usersTable, ({ many }) => ({
+  tweets: many(tweetsTable),
+  likes: many(likesTable),
+}));
+
+export const tweetsRelations = relations(tweetsTable, ({ one, many }) => ({
+  user: one(usersTable, {
+    fields: [tweetsTable.user],
+    references: [usersTable.id],
+  }),
+  parent: one(tweetsTable, {
+    fields: [tweetsTable.parent],
+    references: [tweetsTable.id],
+  }),
+  likes: many(likesTable),
+}));
 
 export const likesRelations = relations(likesTable, ({ one }) => ({
   user: one(usersTable, {
