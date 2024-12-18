@@ -1,16 +1,21 @@
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="container my-5 mx-auto text-center">
-      <h1 className="text-3xl mb-4">Twitter</h1>
-      <p className="mb-3">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam, at?
-      </p>
-      <div className="flex gap-2 justify-center">
-        <Button>Login</Button>
-        <Button>Register</Button>
+    <main className="flex justify-center items-center h-screen">
+      <div className="flex flex-col gap-10 text-center">
+        <h1 className="text-5xl">Twitter</h1>
+        <div className="flex gap-3 justify-center">
+          <Button asChild>
+            <Link href="/login">Login</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/register">Register</Link>
+          </Button>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
