@@ -20,6 +20,7 @@ export const usersTable = sqliteTable("users", {
   id: integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
   username: text().notNull().unique(),
   email: text().notNull().unique(),
+  hash: text().notNull(),
   created,
   updated,
 });
