@@ -18,7 +18,11 @@ async function main() {
   // Create user
   await db
     .insert(usersTable)
-    .values({ username: "aakashkcx", email: "aakashkcx@gmail.com" });
+    .values({
+      username: "aakashkcx",
+      email: "aakashkcx@gmail.com",
+      hash: "hash",
+    });
   console.log("New user created!");
 
   // Read user
@@ -39,7 +43,11 @@ async function main() {
   // Create user
   await db
     .insert(usersTable)
-    .values({ username: "aakashkcx", email: "aakashkcx@gmail.com" });
+    .values({
+      username: "aakashkcx",
+      email: "aakashkcx@gmail.com",
+      hash: "hash",
+    });
   console.log("New user created!");
 
   // Read user
