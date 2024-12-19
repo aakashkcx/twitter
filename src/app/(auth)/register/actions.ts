@@ -12,7 +12,7 @@ import { registerSchema } from "./schema";
 export async function onRegisterSubmit(values: z.infer<typeof registerSchema>) {
   const { success, data } = registerSchema.safeParse(values);
 
-  if (!success) return { error: true };
+  if (!success) return { success: false, error: "Invalid inputs." };
 
   const hash = await hashFunc(data.password);
 

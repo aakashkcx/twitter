@@ -25,8 +25,7 @@ export function RegisterForm() {
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     const res = await onRegisterSubmit(values);
-    if (res.error)
-      form.setError("root", { message: "There was a problem registering." });
+    if (!res.success) form.setError("root", { message: res.error });
   }
 
   return (

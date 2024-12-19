@@ -25,8 +25,7 @@ export function LoginForm() {
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     const res = await onLoginSubmit(values);
-    if (res.error)
-      form.setError("root", { message: "There was a problem logging in." });
+    if (!res.success) form.setError("root", { message: res.error });
   }
 
   return (

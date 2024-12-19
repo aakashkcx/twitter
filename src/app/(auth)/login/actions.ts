@@ -13,17 +13,17 @@ import { loginSchema } from "./schema";
 export async function onLoginSubmit(values: z.infer<typeof loginSchema>) {
   const { success, data } = loginSchema.safeParse(values);
 
-  if (!success) return { error: true };
+  if (!success) return { success: false, error: "Invalid inputs." };
 
   const user = await db.query.usersTable.findFirst({
     where: eq(usersTable.username, data.username),
   });
 
-  if (!user) return { error: true };
+  if (!user) return { success: false, error: "Could not find user." };
 
   const result = await compareHash(data.password, user.hash);
 
-  if (!result) return { error: true };
+  if (!result) return { success: false, error: "Incorrect password." };
 
   console.log(user);
 
