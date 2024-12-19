@@ -1,5 +1,3 @@
-import "dotenv/config";
-
 import bcrypt from "bcrypt";
 
 const BCRYPT_COST = parseInt(process.env.BCRYPT_COST!);
