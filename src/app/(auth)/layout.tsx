@@ -10,10 +10,10 @@ export default function AuthLayout({
 }>) {
   return (
     <main className="flex justify-center items-center h-screen">
-      <nav className="fixed top-3 left-3">
-        <Button variant="outline" size="icon" asChild>
+      <nav className="fixed top-5 left-5">
+        <Button variant="outline" asChild>
           <Link href="/">
-            <ChevronLeft />
+            <ChevronLeft /> Back
           </Link>
         </Button>
       </nav>
