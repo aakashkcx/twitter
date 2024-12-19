@@ -3,7 +3,7 @@
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
-import { decrypt, encrypt } from "./jwt";
+import { decrypt, encrypt } from "@/lib/jwt";
 
 const COOKIE_NAME = process.env.SESSION_COOKIE_NAME!;
 const DURATION_SECONDS = parseInt(process.env.SESSION_DURATION_SECONDS!);

@@ -5,3 +5,5 @@ import * as schema from "@/db/schema";
 const FILE_NAME = process.env.DB_FILE_NAME!;
 
 export const db = drizzle({ connection: FILE_NAME, schema });
+
+export { usersTable, tweetsTable, likesTable } from "@/db/schema";

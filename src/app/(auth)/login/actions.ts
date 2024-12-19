@@ -4,12 +4,10 @@ import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
-import { db } from "@/db";
-import { usersTable } from "@/db/schema";
+import { loginSchema } from "@/app/(auth)/login/schema";
+import { db, usersTable } from "@/db";
 import { compareHash } from "@/lib/hash";
 import { createSession } from "@/lib/session";
-
-import { loginSchema } from "./schema";
 
 export async function onLoginSubmit(values: z.infer<typeof loginSchema>) {
   const { success, data } = loginSchema.safeParse(values);

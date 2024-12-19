@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { onRegisterSubmit } from "@/app/(auth)/register/actions";
+import { registerSchema } from "@/app/(auth)/register/schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,9 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-import { onRegisterSubmit } from "./actions";
-import { registerSchema } from "./schema";
 
 export function RegisterForm() {
   const form = useForm<z.infer<typeof registerSchema>>({

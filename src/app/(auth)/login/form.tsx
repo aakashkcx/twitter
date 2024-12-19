@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { onLoginSubmit } from "@/app/(auth)/login/actions";
+import { loginSchema } from "@/app/(auth)/login/schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,9 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-import { onLoginSubmit } from "./actions";
-import { loginSchema } from "./schema";
 
 export function LoginForm() {
   const form = useForm<z.infer<typeof loginSchema>>({

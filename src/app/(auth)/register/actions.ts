@@ -3,12 +3,10 @@
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
-import { db } from "@/db";
-import { usersTable } from "@/db/schema";
+import { registerSchema } from "@/app/(auth)/register/schema";
+import { db, usersTable } from "@/db";
 import { hashFunc } from "@/lib/hash";
 import { createSession } from "@/lib/session";
-
-import { registerSchema } from "./schema";
 
 export async function onRegisterSubmit(values: z.infer<typeof registerSchema>) {
   const { success, data } = registerSchema.safeParse(values);
