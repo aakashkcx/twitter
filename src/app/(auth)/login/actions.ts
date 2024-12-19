@@ -1,12 +1,12 @@
 "use server";
 
-import bcrypt from "bcrypt";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
+import { compareHash } from "@/lib/hash";
 
 import { loginSchema } from "./schema";
 
@@ -21,7 +21,7 @@ export async function onLoginSubmit(values: z.infer<typeof loginSchema>) {
 
   if (!user) return { error: true };
 
-  const result = await bcrypt.compare(data.password, user.hash);
+  const result = await compareHash(data.password, user.hash);
 
   if (!result) return { error: true };
 
