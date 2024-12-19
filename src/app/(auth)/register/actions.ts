@@ -6,6 +6,7 @@ import { z } from "zod";
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 import { hashFunc } from "@/lib/hash";
+import { createSession } from "@/lib/session";
 
 import { registerSchema } from "./schema";
 
@@ -21,7 +22,7 @@ export async function onRegisterSubmit(values: z.infer<typeof registerSchema>) {
     .values({ ...data, hash })
     .returning();
 
-  console.log(user);
+  await createSession(user[0].id);
 
   redirect("/");
 }

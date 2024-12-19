@@ -7,6 +7,7 @@ import { z } from "zod";
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 import { compareHash } from "@/lib/hash";
+import { createSession } from "@/lib/session";
 
 import { loginSchema } from "./schema";
 
@@ -25,7 +26,7 @@ export async function onLoginSubmit(values: z.infer<typeof loginSchema>) {
 
   if (!result) return { success: false, error: "Incorrect password." };
 
-  console.log(user);
+  await createSession(user.id);
 
   redirect("/");
 }
