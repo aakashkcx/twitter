@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 export function RegisterForm() {
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
+    defaultValues: { username: "", email: "", password: "", confirm: "" },
   });
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {

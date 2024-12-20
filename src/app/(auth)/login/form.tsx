@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 export function LoginForm() {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
+    defaultValues: { username: "", password: "" },
   });
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
