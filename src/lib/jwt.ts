@@ -16,7 +16,7 @@ export async function encrypt(payload: JWTPayload) {
     .sign(encodedKey);
 }
 
-export async function decrypt(jwt: string | undefined = "") {
+export async function decrypt(jwt: string) {
   try {
     const { payload } = await jwtVerify(jwt, encodedKey, {
       algorithms: [JWT_ALGORITHM],

@@ -25,6 +25,7 @@ export async function createSession(userId: number) {
 export async function verifySession() {
   const cookieStore = await cookies();
   const jwt = cookieStore.get(COOKIE_NAME)?.value;
+  if (!jwt) return;
   const session = await decrypt(jwt);
   if (!session?.userId) return;
   return Number(session.userId);
