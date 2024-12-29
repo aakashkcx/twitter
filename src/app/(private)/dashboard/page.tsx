@@ -1,8 +1,8 @@
-import { desc } from "drizzle-orm";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { NewTweetForm } from "@/app/(private)/dashboard/form";
-import { db, tweetsTable } from "@/db";
+import { db } from "@/db";
 import { getUser } from "@/lib/user";
 
 export default async function DashboardPage() {
@@ -12,7 +12,7 @@ export default async function DashboardPage() {
   const tweets = await db.query.tweetsTable.findMany({
     with: { user: { columns: { username: true } } },
     limit: 10,
-    orderBy: [desc(tweetsTable.updated)],
+    orderBy: (tweets, { desc }) => desc(tweets.created),
   });
 
   return (
