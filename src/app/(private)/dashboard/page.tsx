@@ -18,17 +18,17 @@ export default async function DashboardPage() {
   return (
     <>
       <NewTweetForm userId={user.id} />
-      <ul>
+      <div className="flex flex-col gap-3">
         {tweets.map((tweet) => (
-          <li key={tweet.id}>
+          <Link key={tweet.id} href={`/@${tweet.user.username}/${tweet.id}`}>
             {tweet.user.username}
             <br />
             {tweet.body}
             <br />
-            {tweet.created.toString()}
-          </li>
+            {tweet.created.toLocaleString()}
+          </Link>
         ))}
-      </ul>
+      </div>
     </>
   );
 }
