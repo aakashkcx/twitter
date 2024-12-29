@@ -1,8 +1,9 @@
+import { Bird } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { logout } from "@/app/(private)/actions";
 import { getUser } from "@/lib/user";
+import { cn } from "@/lib/utils";
 
 export default async function PrivateLayout({
   children,
@@ -13,21 +14,33 @@ export default async function PrivateLayout({
   if (!user) redirect("/login");
 
   return (
-    <main className="container">
-      <nav className="flex justify-between border rounded-md my-5 text-xl">
-        <Link href="/" className="py-4 px-8">
-          Twitter
-        </Link>
-        <div className="flex">
-          <Link href="/" className="py-4 px-8">
-            {user.username}
-          </Link>
-          <button onClick={logout} className="py-4 px-8">
-            Logout
-          </button>
+    <>
+      <nav className="bg-card border-b-2 border-secondary text-lg font-medium">
+        <div className="container flex justify-between items-center py-2">
+          <NavLink href="/" className="flex items-center gap-2 font-semibold">
+            <Bird className="size-7" />
+            <span className="sr-only md:not-sr-only">Twitter</span>
+          </NavLink>
+          <div className="flex items-center gap-4">
+            <NavLink href="/logout">Logout</NavLink>
+            <NavLink href={`/@${user.username}`}>@{user.username}</NavLink>
+          </div>
         </div>
       </nav>
+      <main className="container my-6">{children}</main>
+    </>
+  );
+}
+
+function NavLink({
+  children,
+  className,
+  href,
+  ...props
+}: React.ComponentProps<typeof Link>) {
+  return (
+    <Link href={href} className={cn(className, "py-2 px-2")} {...props}>
       {children}
-    </main>
+    </Link>
   );
 }
