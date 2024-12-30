@@ -6,9 +6,9 @@ import { db } from "@/db";
 export default async function TweetPage({
   params,
 }: {
-  params: Promise<{ username: string; tweetId: string }>;
+  params: Promise<{ tweetId: string }>;
 }) {
-  const { username, tweetId: tweetIdString } = await params;
+  const { tweetId: tweetIdString } = await params;
 
   const tweetId = Number(tweetIdString);
   if (Number.isNaN(tweetId)) return notFound();
@@ -18,7 +18,7 @@ export default async function TweetPage({
     with: { user: { columns: { username: true } } },
   });
 
-  if (!tweet || tweet.user.username !== username) return notFound();
+  if (!tweet) return notFound();
 
   return (
     <div>

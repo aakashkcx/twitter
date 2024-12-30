@@ -31,7 +31,7 @@ export default async function UserPage({
       </div>
       <div className="flex flex-col gap-3">
         {user.tweets.map((tweet) => (
-          <Link key={tweet.id} href={`/@${username}/${tweet.id}`}>
+          <Link key={tweet.id} href={`/tweet/${tweet.id}`}>
             {username}
             <br />
             {tweet.body}
