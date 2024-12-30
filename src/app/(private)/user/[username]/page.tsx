@@ -1,9 +1,9 @@
+import { Calendar, Inbox, StickyNote } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/db";
-import { Calendar, Inbox, StickyNote } from "lucide-react";
 
 export default async function UserPage({
   params,
@@ -45,14 +45,19 @@ export default async function UserPage({
           </div>
         </CardContent>
       </Card>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 mt-5">
         {user.tweets.map((tweet) => (
           <Link key={tweet.id} href={`/tweet/${tweet.id}`}>
-            {username}
-            <br />
-            {tweet.body}
-            <br />
-            {tweet.created.toLocaleString()}
+            <Card>
+              <CardContent className="flex flex-col p-4">
+                <div className="font-semibold">@{user.username}</div>
+                <div>{tweet.body}</div>
+                <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <Calendar className="size-4" />
+                  {tweet.created.toLocaleString()}
+                </div>
+              </CardContent>
+            </Card>
           </Link>
         ))}
       </div>
