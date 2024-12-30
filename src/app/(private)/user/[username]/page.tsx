@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/db";
+import { Calendar, Inbox, StickyNote } from "lucide-react";
 
 export default async function UserPage({
   params,
@@ -24,11 +26,25 @@ export default async function UserPage({
 
   return (
     <>
-      <div>
-        <h3>{user.username}</h3>
-        <p>{user.email}</p>
-        <p>{user.created.toLocaleDateString()}</p>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>@{user.username}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex gap-5 text-muted-foreground">
+          <div className="flex items-center gap-1">
+            <Inbox className="size-4" />
+            {user.email}
+          </div>
+          <div className="flex items-center gap-1">
+            <Calendar className="size-4" />
+            Joined {user.created.toLocaleDateString()}
+          </div>
+          <div className="flex items-center gap-1">
+            <StickyNote className="size-4" />
+            {user.tweets.length} Tweets
+          </div>
+        </CardContent>
+      </Card>
       <div className="flex flex-col gap-3">
         {user.tweets.map((tweet) => (
           <Link key={tweet.id} href={`/tweet/${tweet.id}`}>
