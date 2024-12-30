@@ -16,11 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 
-type NewTweetFormProps = {
-  userId: number;
-};
-
-export function NewTweetForm({ userId }: NewTweetFormProps) {
+export function NewTweetForm({ userId }: { userId: number }) {
   const form = useForm<z.infer<typeof newTweetSchema>>({
     resolver: zodResolver(newTweetSchema),
     defaultValues: { user: userId, body: "" },
@@ -28,7 +24,8 @@ export function NewTweetForm({ userId }: NewTweetFormProps) {
 
   async function onSubmit(values: z.infer<typeof newTweetSchema>) {
     const res = await onNewTweetSubmit(values);
-    if (!res.success) form.setError("root", { message: res.error });
+    if (res.success) form.setValue("body", "");
+    else form.setError("root", { message: res.error });
   }
 
   return (
