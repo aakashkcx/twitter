@@ -3,7 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { getUser } from "@/lib/user";
-import { cn } from "@/lib/utils";
+import { logout } from "@/app/(private)/actions";
 
 export default async function PrivateLayout({
   children,
@@ -22,9 +22,9 @@ export default async function PrivateLayout({
             <span className="sr-only md:not-sr-only">Twitter</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/logout" className="p-2">
+            <button onClick={logout} className="p-2">
               Logout
-            </Link>
+            </button>
             <Link href={`/@${user.username}`} className="p-2">
               @{user.username}
             </Link>
