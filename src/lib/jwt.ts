@@ -1,6 +1,6 @@
 "use server";
 
-import { JWTPayload, jwtVerify, SignJWT } from "jose";
+import { type JWTPayload, jwtVerify, SignJWT } from "jose";
 
 const DURATION = process.env.SESSION_DURATION!;
 const JWT_ALGORITHM = process.env.SESSION_JWT_ALGORITHM!;
