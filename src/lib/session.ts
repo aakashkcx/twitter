@@ -2,6 +2,7 @@
 
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
+import { cache } from "react";
 
 import { decrypt, encrypt } from "@/lib/jwt";
 
@@ -22,14 +23,14 @@ export async function createSession(userId: number) {
   cookieStore.set(COOKIE_NAME, jwt, { ...cookieOptions, expires });
 }
 
-export async function verifySession() {
+export const verifySession = cache(async function () {
   const cookieStore = await cookies();
   const jwt = cookieStore.get(COOKIE_NAME)?.value;
   if (!jwt) return;
   const session = await decrypt(jwt);
   if (!session?.userId) return;
   return Number(session.userId);
-}
+});
 
 export async function deleteSession() {
   const cookieStore = await cookies();
