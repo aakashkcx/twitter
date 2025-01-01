@@ -17,30 +17,21 @@ export default async function PrivateLayout({
     <>
       <nav className="bg-card border-b-2 border-secondary text-lg font-medium">
         <div className="container flex justify-between items-center py-2">
-          <NavLink href="/" className="flex items-center gap-2 font-semibold">
+          <Link href="/" className="flex items-center gap-2 font-semibold p-2">
             <Bird className="size-7" />
             <span className="sr-only md:not-sr-only">Twitter</span>
-          </NavLink>
+          </Link>
           <div className="flex items-center gap-4">
-            <NavLink href="/logout">Logout</NavLink>
-            <NavLink href={`/@${user.username}`}>@{user.username}</NavLink>
+            <Link href="/logout" className="p-2">
+              Logout
+            </Link>
+            <Link href={`/@${user.username}`} className="p-2">
+              @{user.username}
+            </Link>
           </div>
         </div>
       </nav>
       <main className="container my-6">{children}</main>
     </>
-  );
-}
-
-function NavLink({
-  children,
-  className,
-  href,
-  ...props
-}: React.ComponentProps<typeof Link>) {
-  return (
-    <Link href={href} className={cn(className, "py-2 px-2")} {...props}>
-      {children}
-    </Link>
   );
 }
