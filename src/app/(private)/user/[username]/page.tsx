@@ -14,11 +14,7 @@ export default async function UserPage({
   const user = await db.query.usersTable.findFirst({
     columns: { hash: false },
     where: (user, { eq }) => eq(user.username, username),
-    with: {
-      tweets: {
-        orderBy: (tweets, { desc }) => desc(tweets.created),
-      },
-    },
+    with: { tweets: { orderBy: (tweets, { desc }) => desc(tweets.created) } },
   });
 
   if (!user) return notFound();
