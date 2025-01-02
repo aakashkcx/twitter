@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { onNewTweetSubmit } from "@/app/(private)/dashboard/actions";
+import { onNewTweetSubmit } from "@/app/(private)/actions";
 import { newTweetSchema } from "@/app/(private)/schema";
 import { Button } from "@/components/ui/button";
 import {
