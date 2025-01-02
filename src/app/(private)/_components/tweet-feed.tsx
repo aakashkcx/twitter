@@ -35,9 +35,10 @@ export function TweetFeed({
 }
 
 export function UserTweetFeed({
-  tweets,
   user,
+  tweets,
 }: {
+  user: { username: string };
   tweets: {
     id: number;
     user: number;
@@ -45,7 +46,6 @@ export function UserTweetFeed({
     created: Date;
     updated: Date;
   }[];
-  user: { username: string };
 }) {
   return (
     <>

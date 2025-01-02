@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { TweetCard } from "@/components/tweet-card";
+import { TweetCard } from "@/app/(private)/_components/tweet-card";
 import { db } from "@/db";
 
 export default async function TweetPage({

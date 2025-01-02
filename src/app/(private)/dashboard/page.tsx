@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
+import { TweetFeed } from "@/app/(private)/_components/tweet-feed";
 import { NewTweetForm } from "@/app/(private)/dashboard/form";
-import { TweetFeed } from "@/components/tweet-feed";
 import { db } from "@/db";
 import { getUser } from "@/lib/user";
 

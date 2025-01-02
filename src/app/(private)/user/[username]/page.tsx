@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
-import { UserTweetFeed } from "@/components/tweet-feed";
-import { UserCard } from "@/components/user-card";
+import { UserTweetFeed } from "@/app/(private)/_components/tweet-feed";
+import { UserCard } from "@/app/(private)/_components/user-card";
 import { db } from "@/db";
 
 export default async function UserPage({
