@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
-    <main className="flex justify-center items-center min-h-screen">
+    <main className="flex min-h-screen items-center justify-center">
       <div className="flex flex-col gap-10 text-center">
         <h1 className="text-5xl font-light">Twitter</h1>
-        <div className="flex gap-3 justify-center">
+        <div className="flex justify-center gap-3">
           <Button asChild>
             <Link href="/login">Login</Link>
           </Button>

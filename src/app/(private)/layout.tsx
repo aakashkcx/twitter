@@ -2,8 +2,8 @@ import { Bird } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { getUser } from "@/lib/user";
 import { logout } from "@/app/(private)/actions";
+import { getUser } from "@/lib/user";
 
 export default async function PrivateLayout({
   children,
@@ -15,9 +15,9 @@ export default async function PrivateLayout({
 
   return (
     <>
-      <nav className="bg-card border-b-2 border-secondary text-lg font-medium">
-        <div className="container flex justify-between items-center py-2">
-          <Link href="/" className="flex items-center gap-2 font-semibold p-2">
+      <nav className="border-b-2 border-secondary bg-card text-lg font-medium">
+        <div className="container flex items-center justify-between py-2">
+          <Link href="/" className="flex items-center gap-2 p-2 font-semibold">
             <Bird className="size-7" />
             <span className="sr-only md:not-sr-only">Twitter</span>
           </Link>

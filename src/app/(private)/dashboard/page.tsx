@@ -20,7 +20,7 @@ export default async function DashboardPage() {
   return (
     <>
       <NewTweetForm userId={user.id} />
-      <div className="flex flex-col gap-3 mt-5">
+      <div className="mt-5 flex flex-col gap-3">
         {tweets.map((tweet) => (
           <Link key={tweet.id} href={`/tweet/${tweet.id}`}>
             <Card>

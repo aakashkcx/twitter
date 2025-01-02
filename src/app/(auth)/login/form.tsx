@@ -32,7 +32,7 @@ export function LoginForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex gap-3 flex-col"
+        className="flex flex-col gap-3"
       >
         <FormField
           control={form.control}

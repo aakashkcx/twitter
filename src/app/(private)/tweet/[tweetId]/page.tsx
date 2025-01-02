@@ -37,7 +37,7 @@ export default async function TweetPage({
         </CardTitle>
       </CardHeader>
       <CardContent>{tweet.body}</CardContent>
-      <CardFooter className="text-muted-foreground text-sm">
+      <CardFooter className="text-sm text-muted-foreground">
         {tweet.created.toLocaleString()}
       </CardFooter>
     </Card>

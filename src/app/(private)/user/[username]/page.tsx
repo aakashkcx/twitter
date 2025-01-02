@@ -45,7 +45,7 @@ export default async function UserPage({
           </div>
         </CardContent>
       </Card>
-      <div className="flex flex-col gap-3 mt-5">
+      <div className="mt-5 flex flex-col gap-3">
         {user.tweets.map((tweet) => (
           <Link key={tweet.id} href={`/tweet/${tweet.id}`}>
             <Card>

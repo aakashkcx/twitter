@@ -35,7 +35,7 @@ export const tweetsTable = sqliteTable("tweets", {
     }),
   body: text().notNull(),
   parent: integer({ mode: "number" }).references(
-    (): AnySQLiteColumn => tweetsTable.id
+    (): AnySQLiteColumn => tweetsTable.id,
   ),
   created,
   updated,
@@ -58,7 +58,7 @@ export const likesTable = sqliteTable(
       }),
     created,
   },
-  (table) => [primaryKey({ columns: [table.user, table.tweet] })]
+  (table) => [primaryKey({ columns: [table.user, table.tweet] })],
 );
 
 export const userRelations = relations(usersTable, ({ many }) => ({
