@@ -9,6 +9,8 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "dev": "next dev --turbopack",
+    "format:check": "prettier \"**/*.{ts,tsx,js,jsx,mdx,cjs,mjs,json}\" --check --cache",
+    "format:write": "prettier \"**/*.{ts,tsx,js,jsx,mdx,cjs,mjs,json}\" --write --cache",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "start": "next start",
