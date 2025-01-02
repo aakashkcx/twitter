@@ -19,7 +19,7 @@ export async function createTweet(values: z.infer<typeof tweetSchema>) {
 
   await db.insert(tweetsTable).values({ ...data, user: userId });
 
-  revalidatePath(values.parent ? `/tweet/${parent}` : "/dashboard");
+  revalidatePath(values.parent ? `/tweet/${values.parent}` : "/dashboard");
 
   return { success: true };
 }
