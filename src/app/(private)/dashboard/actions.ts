@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
-import { newTweetSchema } from "@/app/(private)/dashboard/schema";
+import { newTweetSchema } from "@/app/(private)/schema";
 import { db, tweetsTable } from "@/db";
 import { verifySession } from "@/lib/session";
 

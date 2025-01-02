@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { onNewTweetSubmit } from "@/app/(private)/dashboard/actions";
-import { newTweetSchema } from "@/app/(private)/dashboard/schema";
+import { newTweetSchema } from "@/app/(private)/schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
