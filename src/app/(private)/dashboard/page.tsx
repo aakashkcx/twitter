@@ -17,8 +17,8 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-3">
-      <TweetForm />
-        <TweetFeed tweets={tweets} />
-      </div>
+      <TweetForm placeholder="What is happening?" />
+      <TweetFeed tweets={tweets} />
+    </div>
   );
 }

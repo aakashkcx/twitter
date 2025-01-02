@@ -16,7 +16,13 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 
-export function TweetForm({ parent }: { parent?: number }) {
+export function TweetForm({
+  parent,
+  placeholder,
+}: {
+  parent?: number;
+  placeholder?: string;
+}) {
   const form = useForm<z.infer<typeof tweetSchema>>({
     resolver: zodResolver(tweetSchema),
     defaultValues: { body: "", parent },
@@ -40,7 +46,7 @@ export function TweetForm({ parent }: { parent?: number }) {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea placeholder="What is happening?" {...field} />
+                <Textarea placeholder={placeholder} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
