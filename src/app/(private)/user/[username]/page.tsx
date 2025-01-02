@@ -24,11 +24,9 @@ export default async function UserPage({
   if (!user) return notFound();
 
   return (
-    <>
+    <div className="flex flex-col gap-3">
       <UserCard user={user} numTweets={user.tweets.length} />
-      <div className="mt-5 flex flex-col gap-3">
-        <UserTweetFeed tweets={user.tweets} user={user} />
-      </div>
-    </>
+      <UserTweetFeed tweets={user.tweets} user={user} />
+    </div>
   );
 }

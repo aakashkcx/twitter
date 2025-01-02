@@ -16,11 +16,9 @@ export default async function DashboardPage() {
   });
 
   return (
-    <>
+    <div className="flex flex-col gap-3">
       <TweetForm />
-      <div className="mt-5 flex flex-col gap-3">
         <TweetFeed tweets={tweets} />
       </div>
-    </>
   );
 }
