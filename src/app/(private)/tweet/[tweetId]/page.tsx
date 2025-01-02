@@ -1,13 +1,6 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { TweetCard } from "@/components/tweet-card";
 import { db } from "@/db";
 
 export default async function TweetPage({
@@ -27,19 +20,5 @@ export default async function TweetPage({
 
   if (!tweet) return notFound();
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>
-          <Link href={`/@${tweet.user.username}`} className="hover:underline">
-            @{tweet.user.username}
-          </Link>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>{tweet.body}</CardContent>
-      <CardFooter className="text-sm text-muted-foreground">
-        {tweet.created.toLocaleString()}
-      </CardFooter>
-    </Card>
-  );
+  return <TweetCard tweet={tweet} />;
 }
