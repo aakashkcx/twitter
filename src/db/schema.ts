@@ -74,8 +74,9 @@ export const tweetsRelations = relations(tweetsTable, ({ one, many }) => ({
   parent: one(tweetsTable, {
     fields: [tweetsTable.parent],
     references: [tweetsTable.id],
+    relationName: "parent",
   }),
-  children: many(tweetsTable),
+  children: many(tweetsTable, { relationName: "parent" }),
   likes: many(likesTable),
 }));
 
