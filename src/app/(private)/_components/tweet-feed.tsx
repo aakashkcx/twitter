@@ -19,7 +19,7 @@ export function TweetFeed({
       {tweets.map((tweet) => (
         <Link key={tweet.id} href={`/tweet/${tweet.id}`}>
           <Card>
-            <CardContent className="flex flex-col p-4">
+            <CardContent className="flex flex-col gap-1 p-4">
               <div className="font-semibold">@{tweet.user.username}</div>
               <div>{tweet.body}</div>
               <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -52,7 +52,7 @@ export function UserTweetFeed({
       {tweets.map((tweet) => (
         <Link key={tweet.id} href={`/tweet/${tweet.id}`}>
           <Card>
-            <CardContent className="flex flex-col p-4">
+            <CardContent className="flex flex-col gap-1 p-4">
               <div className="font-semibold">@{user.username}</div>
               <div>{tweet.body}</div>
               <div className="flex items-center gap-1 text-sm text-muted-foreground">
