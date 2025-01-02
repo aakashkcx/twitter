@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { onRegisterSubmit } from "@/app/(auth)/register/actions";
-import { registerSchema } from "@/app/(auth)/register/schema";
+import { register } from "@/app/(auth)/actions";
+import { registerSchema } from "@/app/(auth)/schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -24,7 +24,7 @@ export function RegisterForm() {
   });
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {
-    const res = await onRegisterSubmit(values);
+    const res = await register(values);
     if (!res.success) form.setError("root", { message: res.error });
   }
 

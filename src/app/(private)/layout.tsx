@@ -2,7 +2,7 @@ import { Bird } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { logout } from "@/app/(private)/actions";
+import { logout } from "@/app/(auth)/actions";
 import { getUser } from "@/lib/user";
 
 export default async function PrivateLayout({

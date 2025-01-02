@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { onLoginSubmit } from "@/app/(auth)/login/actions";
-import { loginSchema } from "@/app/(auth)/login/schema";
+import { login } from "@/app/(auth)/actions";
+import { loginSchema } from "@/app/(auth)/schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -24,7 +24,7 @@ export function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
-    const res = await onLoginSubmit(values);
+    const res = await login(values);
     if (!res.success) form.setError("root", { message: res.error });
   }
 
