@@ -24,7 +24,7 @@ export function NewTweetForm({ userId }: { userId: number }) {
 
   async function onSubmit(values: z.infer<typeof newTweetSchema>) {
     const res = await onNewTweetSubmit(values);
-    if (res.success) form.setValue("body", "");
+    if (res.success) form.reset();
     else form.setError("root", { message: res.error });
   }
 
