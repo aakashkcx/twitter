@@ -20,7 +20,10 @@ export default async function TweetPage({
     with: {
       user: { columns: { username: true } },
       parent: { with: { user: { columns: { username: true } } } },
-      children: { with: { user: { columns: { username: true } } } },
+      children: {
+        with: { user: { columns: { username: true } } },
+        orderBy: (tweets, { desc }) => desc(tweets.created),
+      },
     },
   });
 
