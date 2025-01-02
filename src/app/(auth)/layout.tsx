@@ -9,7 +9,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex h-screen items-center justify-center">
+    <main className="flex min-h-screen items-center justify-center">
       <nav className="fixed left-5 top-5">
         <Button variant="outline" asChild>
           <Link href="/">
