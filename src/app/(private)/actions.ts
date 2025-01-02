@@ -4,22 +4,22 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
-import { newTweetSchema } from "@/app/(private)/schema";
+import { tweetSchema } from "@/app/(private)/schema";
 import { db, tweetsTable } from "@/db";
 import { verifySession } from "@/lib/session";
 
-export async function onNewTweetSubmit(values: z.infer<typeof newTweetSchema>) {
-  const { success, data } = newTweetSchema.safeParse(values);
+export async function createTweet(values: z.infer<typeof tweetSchema>) {
+  const { success, data } = tweetSchema.safeParse(values);
 
   if (!success) return { success: false, error: "Invalid inputs." };
 
   const userId = await verifySession();
 
-  if (!userId || userId !== data.user) redirect("/login");
+  if (!userId) redirect("/login");
 
-  await db.insert(tweetsTable).values({ ...data });
+  await db.insert(tweetsTable).values({ ...data, user: userId });
 
-  revalidatePath("/dashboard");
+  revalidatePath(values.parent ? `/tweet/${parent}` : "/dashboard");
 
   return { success: true };
 }

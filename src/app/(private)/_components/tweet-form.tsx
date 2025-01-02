@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { onNewTweetSubmit } from "@/app/(private)/actions";
-import { newTweetSchema } from "@/app/(private)/schema";
+import { createTweet } from "@/app/(private)/actions";
+import { tweetSchema } from "@/app/(private)/schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,14 +16,14 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 
-export function NewTweetForm({ userId }: { userId: number }) {
-  const form = useForm<z.infer<typeof newTweetSchema>>({
-    resolver: zodResolver(newTweetSchema),
-    defaultValues: { user: userId, body: "" },
+export function TweetForm({ parent }: { parent?: number }) {
+  const form = useForm<z.infer<typeof tweetSchema>>({
+    resolver: zodResolver(tweetSchema),
+    defaultValues: { body: "", parent },
   });
 
-  async function onSubmit(values: z.infer<typeof newTweetSchema>) {
-    const res = await onNewTweetSubmit(values);
+  async function onSubmit(values: z.infer<typeof tweetSchema>) {
+    const res = await createTweet(values);
     if (res.success) form.reset();
     else form.setError("root", { message: res.error });
   }
