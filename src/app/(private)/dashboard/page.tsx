@@ -10,7 +10,12 @@ export default async function DashboardPage() {
   if (!userId) redirect("/login");
 
   const tweets = await db.query.tweetsTable.findMany({
-    with: { user: { columns: { username: true } }, likes: true },
+    with: {
+      user: { columns: { username: true } },
+      parent: { with: { user: { columns: { username: true } } } },
+      children: { columns: { id: true } },
+      likes: { columns: { user: true } },
+    },
     orderBy: (tweets, { desc }) => desc(tweets.created),
     limit: 10,
   });

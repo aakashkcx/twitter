@@ -23,12 +23,25 @@ export default async function TweetPage({
     where: (tweet, { eq }) => eq(tweet.id, tweetId),
     with: {
       user: { columns: { username: true } },
-      parent: { with: { user: { columns: { username: true } }, likes: true } },
-      children: {
-        with: { user: { columns: { username: true } }, likes: true },
-        orderBy: (tweets, { desc }) => desc(tweets.created),
+      parent: {
+        with: {
+          user: { columns: { username: true } },
+          parent: { with: { user: { columns: { username: true } } } },
+          children: { columns: { id: true } },
+          likes: { columns: { user: true } },
+        },
       },
-      likes: true,
+      children: {
+        columns: { parent: false },
+        with: {
+          user: { columns: { username: true } },
+          children: { columns: { id: true } },
+          likes: { columns: { user: true } },
+        },
+        orderBy: (tweets, { desc }) => desc(tweets.created),
+        limit: 10,
+      },
+      likes: { columns: { user: true } },
     },
   });
 

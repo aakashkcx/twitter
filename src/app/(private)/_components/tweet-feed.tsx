@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, Heart } from "lucide-react";
+import { Calendar, Heart, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -16,9 +16,11 @@ export function TweetFeed({
     id: number;
     user: { username: string };
     body: string;
+    parent?: { user: { username: string } } | null;
     created: Date;
     updated: Date;
     likes: { user: number }[];
+    children?: { id: number }[];
   }[];
   userId: number;
 }) {
@@ -39,15 +41,29 @@ export function TweetFeed({
           <Link key={tweet.id} href={`/tweet/${tweet.id}`}>
             <Card>
               <CardContent className="flex flex-col gap-1 p-4">
-                <div className="font-semibold">@{tweet.user.username}</div>
+                <div className="flex gap-2 font-semibold">
+                  @{tweet.user.username}
+                  {tweet.parent && (
+                    <>
+                      <span className="font-normal text-muted-foreground">
+                        replying to
+                      </span>
+                      @{tweet.parent.user.username}
+                    </>
+                  )}
+                </div>
                 <div>{tweet.body}</div>
-                <div className="flex justify-between text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
+                <div className="flex text-sm text-muted-foreground">
+                  <div className="flex w-2/5 min-w-max items-center gap-1">
                     <Calendar className="size-4" />
                     {tweet.created.toLocaleString()}
                   </div>
+                  <div className="flex w-1/6 min-w-max items-center gap-1">
+                    <MessageCircle className="size-4" />
+                    {tweet.children?.length}
+                  </div>
                   <button
-                    className="flex items-center gap-1 hover:text-chart-5"
+                    className="flex min-w-max items-center gap-1 hover:text-chart-5"
                     onClick={onLikeClick}
                   >
                     <Heart
