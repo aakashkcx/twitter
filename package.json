@@ -1,7 +1,8 @@
 {
-  "name": "twitter",
-  "version": "0.1.0",
+  "name": "twitter-clone",
   "private": true,
+  "description": "A twitter clone.",
+  "author": "Aakash Kc <aakashkcx@gmail.com>",
   "scripts": {
     "build": "next build",
     "db:generate": "drizzle-kit generate",
